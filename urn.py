@@ -8,8 +8,8 @@ from update_app import update_blueprints
 # read config file
 config = configparser.ConfigParser()
 config.read('urn.ini')
-default = config['DEFAULT']
-auto_update = default['AutoUpdateApp']
+settings = config['SETTINGS']
+auto_update = settings['AutoUpdateApp']
 
 
 if len(argv) < 2:
@@ -54,7 +54,7 @@ def write_blueprint():
 
 {name} = Blueprint('{name}', __name__, template_folder='templates')
 
-@{name}.route('/', defaults={{'page': 'index'}})
+@{name}.route('/', defaults={{'{name}': 'index'}})
 @{name}.route('/<{name}>')
 def show({name}):
     return render_template(f'{{{name}}}.html')""")

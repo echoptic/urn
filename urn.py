@@ -147,3 +147,6 @@ if argv[1] == 'create':
 
 elif argv[1] == 'update':
     update_blueprints()
+
+elif argv[1] == 'key':
+    print(os.urandom(16))

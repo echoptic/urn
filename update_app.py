@@ -1,11 +1,11 @@
 import os
 
-dir = os.getcwd()
+cwd = os.getcwd()
 
 blueprints = []
 
 # list all folders and append them to blueprints[]
-dir_content = os.listdir(dir)
+dir_content = os.listdir(cwd)
 # ignore pycache folder
 dir_content.remove('__pycache__')
 

@@ -19,7 +19,7 @@ for folder in dir_content:
         
 def update_blueprints():
     # what will be written in app.py
-    app_content = ['from flask import Flask\n\n','application=Flask(__name__)\n', "if __name__ == '__main__':\n\tapplication.run()"]
+    app_content = ['from flask import Flask\n\n','application=Flask(__name__)\n', "if __name__ == '__main__':\n\tapplication.run(debug=True)"]
     for blueprint in blueprints:
         app_content.insert(1, f'from {blueprint}.{blueprint} import {blueprint}\n')
         app_content.insert(-1, f'application.register_blueprint({blueprint})\n')

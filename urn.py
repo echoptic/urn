@@ -1,9 +1,16 @@
+from sys import argv
 import os
 import shutil
-from sys import argv
+import configparser
+
 from update_app import update_blueprints
 
-# from update_app import update_blueprints
+# read config file
+config = configparser.ConfigParser()
+config.read('urn.ini')
+default = config['DEFAULT']
+auto_update = default['AutoUpdateApp']
+
 
 if len(argv) < 2:
     print('Not enough arguments given.')
@@ -98,13 +105,17 @@ def create_blueprint():
                 if not os.path.exists('.gitignore'):
                     with open('.gitignore', 'w') as f:
                         f.write('__pycache__\n')
-    
+
     except KeyboardInterrupt:
         pass
 
 
 if argv[1] == 'create':
     create_blueprint()
+
+    # for some reason this isnt updating the last one but the one
+    if auto_update == 'yes':
+            update_blueprints()
 
 elif argv[1] == 'update':
     update_blueprints()

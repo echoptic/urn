@@ -51,11 +51,11 @@ elif len(argv) > 2:
     dir = f'./{name}/'
 
 # excluding f'{name}'.py and templates/index.html because they will be written after
-file_list = [
-    '__init__.py',
-    f'static/css/{name}.css',
-    f'static/js/{name}.js',
-]
+    file_list = [
+        '__init__.py',
+        f'static/css/{name}.css',
+        f'static/js/{name}.js',
+    ]
 
 
 def write_html():
@@ -70,7 +70,7 @@ def write_html():
     <title>Document</title>
 </head>
 <body>
-    %(name)s
+    {name}
     <script defer src="{{{{ url_for('static', filename='js/{name}.js') }}}}"></script>
 </body>
 </html>''')

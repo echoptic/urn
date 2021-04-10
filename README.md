@@ -6,7 +6,7 @@ You can actually use this right now. Just copy the file urn.py into the working 
 Commands:
 <ul>
     <li>python urn.py create blueprint_name (this will create a route to /blueprint_name)</li>
-    <li>python update_app.py</li>
+    <li>python urn.py update</li>
     <li>flask run</li>
 </ul>
 

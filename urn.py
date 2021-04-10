@@ -60,20 +60,20 @@ file_list = [
 
 def write_html():
     with open(dir + f'/templates/{name}.html', 'w') as f:
-        f.write('''<!DOCTYPE html>
+        f.write(f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/%s.css') }}">
+    <link rel="stylesheet" href="{{{{ url_for('static', filename='css/{name}.css') }}}}">
     <title>Document</title>
 </head>
 <body>
-    %s
-    <script defer src="{{ url_for('static', filename='js/%s.js') }}"></script>
+    %(name)s
+    <script defer src="{{{{ url_for('static', filename='js/{name}.js') }}}}"></script>
 </body>
-</html>''' % name)
+</html>''')
 
 # this is the most important file in the blueprint
 def write_blueprint():

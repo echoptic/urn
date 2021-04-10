@@ -53,8 +53,8 @@ elif len(argv) > 2:
 # excluding f'{name}'.py and templates/index.html because they will be written after
 file_list = [
     '__init__.py',
-    'static/css/style.css',
-    'static/js/script.js',
+    f'static/css/{name}.css',
+    f'static/js/{name}.js',
 ]
 
 
@@ -66,12 +66,12 @@ def write_html():
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/%s.css') }}">
     <title>Document</title>
 </head>
 <body>
     %s
-    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/%s.js') }}"></script>
 </body>
 </html>''' % name)
 

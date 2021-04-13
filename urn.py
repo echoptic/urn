@@ -14,8 +14,10 @@ if '__pycache__' in dir_content:
 
 # ignore all files and folders that have a . in them
 for folder in dir_content:
-    if not '.' in folder:
-        blueprints.append(folder)
+    # checks if its a directory
+    if os.path.isdir(folder):
+        if not '.' in folder:
+            blueprints.append(folder)
         
 def update_blueprints():
     # what will be written in app.py
@@ -60,20 +62,20 @@ elif len(argv) > 2:
 
 def write_html():
     with open(dir + f'/templates/{name}.html', 'w') as f:
-        f.write(f'''<!DOCTYPE html>
+        f.write(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{{{ url_for('static', filename='css/{name}.css') }}}}">
-    <title>Document</title>
+    <title>{name}</title>
 </head>
 <body>
     {name}
     <script defer src="{{{{ url_for('static', filename='js/{name}.js') }}}}"></script>
 </body>
-</html>''')
+</html>""")
 
 # this is the most important file in the blueprint
 def write_blueprint():
@@ -82,10 +84,9 @@ def write_blueprint():
 
 {name} = Blueprint('{name}', __name__, template_folder='templates')
 
-@{name}.route('/', defaults={{'{name}': 'index'}})
-@{name}.route('/<{name}>')
-def show({name}):
-    return render_template(f'{{{name}}}.html')""")
+@{name}.route('/{name}')
+def show():
+    return render_template('{name}.html')""")
 
 
 
